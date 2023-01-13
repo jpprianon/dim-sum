@@ -1,14 +1,14 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
-import {
-  signInAuthUserWithEmailAndPassword,
-  signInWithGooglePopup,
-} from '../../utils/firebase/firebase.utils';
-
 import { SignInContainer, ButtonsContainer } from './sign-in-form.styles';
+import {
+  googleSignInStart,
+  emailSignInStart,
+} from '../../store/user/user.action';
 
 const defaultFormFields = {
   email: '',
@@ -16,6 +16,7 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
@@ -24,17 +25,17 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
+    dispatch(googleSignInStart());
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password);
+      dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch (error) {
-      console.log("la connexion de l'utilisateur a échoué", error);
+      console.log('user sign in failed', error);
     }
   };
 
@@ -46,8 +47,8 @@ const SignInForm = () => {
 
   return (
     <SignInContainer>
-      <h2>Vous avez déjà un compte?</h2>
-      <span>Connectez-vous avec votre email et votre mot de passe</span>
+      <h2>Already have an account?</h2>
+      <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label='Email'
@@ -73,7 +74,7 @@ const SignInForm = () => {
             type='button'
             onClick={signInWithGoogle}
           >
-            S'identifier Google
+            Sign In With Google
           </Button>
         </ButtonsContainer>
       </form>

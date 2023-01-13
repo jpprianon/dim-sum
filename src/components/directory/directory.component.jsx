@@ -28,12 +28,6 @@ const categories = [
     route: 'shop/fritures'
   },
   {
-    id: 5,
-    title: 'Dessert',
-    imageUrl: 'https://i.ibb.co/RQdMHnQ/manioc.jpg',
-    route: 'shop/dessert'
-  },
-  {
     id: 6,
     title: 'Surgelés',
     imageUrl: 'https://i.ibb.co/t8WvRN2/surgele.jpg',

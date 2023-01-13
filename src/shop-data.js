@@ -74,17 +74,6 @@ const SHOP_DATA = [
       ],
     },
     {
-      title: 'Dessert',
-      items: [
-        {
-          id: 10,
-          name: 'Maniocs vapeur',
-          imageUrl: 'https://i.ibb.co/crL9dJQ/carre-manioc.jpg',
-          price: 1,
-        },
-      ],
-    },
-    {
       title: 'Surgelés',
       items: [
         {
