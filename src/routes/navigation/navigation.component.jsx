@@ -33,7 +33,7 @@ const Navigation = () => {
         </LogoContainer>
         <NavLinks>
           <NavLink to='/shop'>
-          BOUTIQUE
+          TEST
           </NavLink>
 
           {currentUser ? (
